@@ -489,7 +489,7 @@ const Home = (props: HomeProps) => {
   }, [refreshCandyMachineState]);
 
   return (
-    <Container style={{ marginTop: 100 }}>
+    <Container style={{ marginTop: 400 }}>
       <Container maxWidth="xs" style={{ position: "relative" }}>
         <Paper
           style={{
@@ -499,17 +499,38 @@ const Home = (props: HomeProps) => {
             borderRadius: 6,
           }}
         >
+          
           {!wallet.connected ? (
+            <>
+            <Typography
+            variant="caption"
+            align="center"
+            display="block"
+            style={{ marginTop: 0, color: "grey", fontSize: "1rem", }}
+          >
+            A rift has opened, through the noise of the rift you can hear the distant sound of an arcade machine.
+          </Typography>
             <ConnectButton>Connect Wallet</ConnectButton>
+            </>
           ) : (
             <>
               {candyMachine && (
-                <Grid
+                <>
+                  <Typography
+                 variant="caption"
+                 align="center"
+                 display="block"
+                 style={{ marginTop: 0, marginBottom: 10, color: "grey", fontSize: "1rem", }}
+               >
+                  You hear a coin slide and clink as it lands on other coins...
+               </Typography>
+                                <Grid
                   container
                   direction="row"
                   justifyContent="center"
                   wrap="nowrap"
                 >
+                 
                   <Grid item xs={3}>
                     <Typography variant="body2" color="textSecondary">
                       Remaining
@@ -536,10 +557,10 @@ const Home = (props: HomeProps) => {
                       style={{ fontWeight: "bold" }}
                     >
                       {isWhitelistUser && discountPrice
-                        ? `◎ ${formatNumber.asNumber(discountPrice)}`
-                        : `◎ ${formatNumber.asNumber(
+                        ? `${formatNumber.asNumber(discountPrice)} Mango`
+                        : `${formatNumber.asNumber(
                             candyMachine.state.price
-                          )}`}
+                          )} Mango`}
                     </Typography>
                   </Grid>
                   <Grid item xs={5}>
@@ -594,6 +615,7 @@ const Home = (props: HomeProps) => {
                     )}
                   </Grid>
                 </Grid>
+                </>
               )}
               <MintContainer>
                 {candyMachine?.state.isActive &&
@@ -708,7 +730,7 @@ const Home = (props: HomeProps) => {
             display="block"
             style={{ marginTop: 7, color: "grey" }}
           >
-            Powered by METAPLEX
+            Brought to you by Syndic Industries
           </Typography>
         </Paper>
       </Container>
