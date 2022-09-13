@@ -524,7 +524,7 @@ const Home = (props: HomeProps) => {
                >
                   You hear a coin slide and clink as it lands on other coins...
                </Typography>
-                                <Grid
+                               <Grid
                   container
                   direction="row"
                   justifyContent="center"
