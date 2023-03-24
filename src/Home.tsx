@@ -85,6 +85,8 @@ const Home = (props: HomeProps) => {
       return;
     }
 
+
+
     return {
       publicKey: wallet.publicKey,
       signAllTransactions: wallet.signAllTransactions,
@@ -499,122 +501,128 @@ const Home = (props: HomeProps) => {
             borderRadius: 6,
           }}
         >
-          
+        
           {!wallet.connected ? (
             <>
-            <Typography
-            variant="caption"
-            align="center"
-            display="block"
-            style={{ marginTop: 0, color: "grey", fontSize: "1rem", }}
-          >
-            A rift has opened, through the noise of the rift you can hear the distant sound of an arcade machine.
-          </Typography>
-            <ConnectButton>Connect Wallet</ConnectButton>
+              <Typography
+                variant="caption"
+                align="center"
+                display="block"
+                style={{ marginTop: 0, color: "grey", fontSize: "1rem" }}
+              >
+                A rift has opened, through the noise of the rift you can hear
+                purring, bongs ripping and the sound of general epicness, will
+                you join in and take part?
+              </Typography>
+              <ConnectButton>Connect Wallet</ConnectButton>
             </>
           ) : (
-            <>
+          <>
               {candyMachine && (
                 <>
                   <Typography
-                 variant="caption"
-                 align="center"
-                 display="block"
-                 style={{ marginTop: 0, marginBottom: 10, color: "grey", fontSize: "1rem", }}
-               >
-                  You hear a coin slide and clink as it lands on other coins...
-               </Typography>
-                               <Grid
-                  container
-                  direction="row"
-                  justifyContent="center"
-                  wrap="nowrap"
-                >
-                 
-                  <Grid item xs={3}>
-                    <Typography variant="body2" color="textSecondary">
-                      Remaining
-                    </Typography>
-                    <Typography
-                      variant="h6"
-                      color="textPrimary"
-                      style={{
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {`${itemsRemaining}`}
-                    </Typography>
+                    variant="caption"
+                    align="center"
+                    display="block"
+                    style={{
+                      marginTop: 0,
+                      marginBottom: 10,
+                      color: "grey",
+                      fontSize: "1rem",
+                    }}
+                  >
+                    Creck you say? I hear that those who are baked enjoy it...
+                  </Typography>
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    wrap="nowrap"
+                  >
+                    <Grid item xs={3}>
+                      <Typography variant="body2" color="textSecondary">
+                        Remaining
+                      </Typography>
+                      <Typography
+                        variant="h6"
+                        color="textPrimary"
+                        style={{
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {`${itemsRemaining}`}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Typography variant="body2" color="textSecondary">
+                        {isWhitelistUser && discountPrice
+                          ? "Discount Price"
+                          : "Price"}
+                      </Typography>
+                      <Typography
+                        variant="h6"
+                        color="textPrimary"
+                        style={{ fontWeight: "bold" }}
+                      >
+                        {isWhitelistUser && discountPrice
+                          ? `${formatNumber.asNumber(discountPrice)} Mango`
+                          : `${formatNumber.asNumber(
+                              candyMachine.state.price
+                            )} Mango`}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={5}>
+                      {isActive && endDate && Date.now() < endDate.getTime() ? (
+                        <>
+                          <MintCountdown
+                            key="endSettings"
+                            date={getCountdownDate(candyMachine)}
+                            style={{ justifyContent: "flex-end" }}
+                            status="COMPLETED"
+                            onComplete={toggleMintButton}
+                          />
+                          <Typography
+                            variant="caption"
+                            align="center"
+                            display="block"
+                            style={{ fontWeight: "bold" }}
+                          >
+                            TO END OF MINT
+                          </Typography>
+                        </>
+                      ) : (
+                        <>
+                          <MintCountdown
+                            key="goLive"
+                            date={getCountdownDate(candyMachine)}
+                            style={{ justifyContent: "flex-end" }}
+                            status={
+                              candyMachine?.state?.isSoldOut ||
+                              (endDate && Date.now() > endDate.getTime())
+                                ? "COMPLETED"
+                                : isPresale
+                                ? "PRESALE"
+                                : "LIVE"
+                            }
+                            onComplete={toggleMintButton}
+                          />
+                          {isPresale &&
+                            candyMachine.state.goLiveDate &&
+                            candyMachine.state.goLiveDate.toNumber() >
+                              new Date().getTime() / 1000 && (
+                              <Typography
+                                variant="caption"
+                                align="center"
+                                display="block"
+                                style={{ fontWeight: "bold" }}
+                              >
+                                UNTIL PUBLIC MINT
+                              </Typography>
+                            )}
+                        </>
+                      )}
+                    </Grid>
                   </Grid>
-                  <Grid item xs={4}>
-                    <Typography variant="body2" color="textSecondary">
-                      {isWhitelistUser && discountPrice
-                        ? "Discount Price"
-                        : "Price"}
-                    </Typography>
-                    <Typography
-                      variant="h6"
-                      color="textPrimary"
-                      style={{ fontWeight: "bold" }}
-                    >
-                      {isWhitelistUser && discountPrice
-                        ? `${formatNumber.asNumber(discountPrice)} Mango`
-                        : `${formatNumber.asNumber(
-                            candyMachine.state.price
-                          )} Mango`}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={5}>
-                    {isActive && endDate && Date.now() < endDate.getTime() ? (
-                      <>
-                        <MintCountdown
-                          key="endSettings"
-                          date={getCountdownDate(candyMachine)}
-                          style={{ justifyContent: "flex-end" }}
-                          status="COMPLETED"
-                          onComplete={toggleMintButton}
-                        />
-                        <Typography
-                          variant="caption"
-                          align="center"
-                          display="block"
-                          style={{ fontWeight: "bold" }}
-                        >
-                          TO END OF MINT
-                        </Typography>
-                      </>
-                    ) : (
-                      <>
-                        <MintCountdown
-                          key="goLive"
-                          date={getCountdownDate(candyMachine)}
-                          style={{ justifyContent: "flex-end" }}
-                          status={
-                            candyMachine?.state?.isSoldOut ||
-                            (endDate && Date.now() > endDate.getTime())
-                              ? "COMPLETED"
-                              : isPresale
-                              ? "PRESALE"
-                              : "LIVE"
-                          }
-                          onComplete={toggleMintButton}
-                        />
-                        {isPresale &&
-                          candyMachine.state.goLiveDate &&
-                          candyMachine.state.goLiveDate.toNumber() >
-                            new Date().getTime() / 1000 && (
-                            <Typography
-                              variant="caption"
-                              align="center"
-                              display="block"
-                              style={{ fontWeight: "bold" }}
-                            >
-                              UNTIL PUBLIC MINT
-                            </Typography>
-                          )}
-                      </>
-                    )}
-                  </Grid>
-                </Grid>
                 </>
               )}
               <MintContainer>
@@ -722,7 +730,7 @@ const Home = (props: HomeProps) => {
                   />
                 )}
               </MintContainer>
-            </>
+            </> 
           )}
           <Typography
             variant="caption"

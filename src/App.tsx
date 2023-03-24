@@ -48,7 +48,7 @@ if (process.env.REACT_APP_SOLANA_NETWORK === undefined) {
 
 const candyMachineId = getCandyMachineId();
 const network = (process.env.REACT_APP_SOLANA_NETWORK ??
-  "devnet") as WalletAdapterNetwork;
+  "mainnet") as WalletAdapterNetwork;
 const rpcHost =
   process.env.REACT_APP_SOLANA_RPC_HOST ?? anchor.web3.clusterApiUrl("devnet");
 const connection = new anchor.web3.Connection(rpcHost);
