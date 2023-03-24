@@ -1546,10 +1546,10 @@ const Home = (props: HomeProps) => {
                         style={{ fontWeight: "bold" }}
                       >
                         {isWhitelistUser && discountPrice
-                          ? `${formatNumber.asNumber(discountPrice)} Mango`
+                          ? `${formatNumber.asNumber(discountPrice)} SOL`
                           : `${formatNumber.asNumber(
                               candyMachine.state.price
-                            )} Mango`}
+                            )} SOL`}
                       </Typography>
                     </Grid>
                     <Grid item xs={5}>
