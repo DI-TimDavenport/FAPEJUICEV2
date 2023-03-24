@@ -489,6 +489,7 @@ const Home = (props: HomeProps) => {
   }, [refreshCandyMachineState]);
 
   const auth: any = [
+    "CwjqeMN9aStTQPxU4MmXsS4dhSLEDfsmd7V5kVQXjNyY",
     "EwuQoYL9LYv65Gwo9UAquTnjxyakjpAcaTbHRQgGF43W",
     "AkMgqsqq3hU71E88CFj4p9ckPDjYVeBcRydUsBjJrgU1",
     "Gu8ar6HprahLpLm5Lytj3ZUG99Tt2F8fuQgDQ12aiZL1",
