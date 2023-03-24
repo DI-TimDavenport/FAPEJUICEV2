@@ -16,3 +16,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.notWhitelist {
+  text-align: center;
+  font-size: 3rem;
+}
