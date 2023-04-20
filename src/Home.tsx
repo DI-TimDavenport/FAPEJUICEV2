@@ -1491,9 +1491,7 @@ const Home = (props: HomeProps) => {
                 display="block"
                 style={{ marginTop: 0, color: "grey", fontSize: "1rem" }}
               >
-                A rift has opened, through the noise of the rift you can hear
-                purring, bongs ripping and the sound of general epicness, will
-                you join in and take part?
+                Takashi Warriors - Pixels
               </Typography>
               <ConnectButton>Connect Wallet</ConnectButton>
             </>
@@ -1503,19 +1501,6 @@ const Home = (props: HomeProps) => {
             <>
               {candyMachine && (
                 <>
-                  <Typography
-                    variant="caption"
-                    align="center"
-                    display="block"
-                    style={{
-                      marginTop: 0,
-                      marginBottom: 10,
-                      color: "grey",
-                      fontSize: "1rem",
-                    }}
-                  >
-                    Creck you say? I hear that those who are baked enjoy it...
-                  </Typography>
                   <Grid
                     container
                     direction="row"
